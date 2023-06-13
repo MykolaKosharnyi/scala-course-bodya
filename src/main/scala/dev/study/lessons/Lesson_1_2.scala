@@ -1,9 +1,9 @@
-package net.study.functional.lesson1_basics
+package dev.study.lessons
 
 import java.util.UUID
 import java.util.concurrent.{Executors, TimeUnit}
 
-object Lesson1 {
+object Lesson_1_2 {
   def main(args: Array[String]): Unit = {
    //statement - нічого не вертає
    //expression
