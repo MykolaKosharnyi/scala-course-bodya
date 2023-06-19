@@ -78,4 +78,6 @@ object Lesson4 extends App {
 //    1
 //  })
 
+  case class Person1(name: String, var relation: String)
+
 }

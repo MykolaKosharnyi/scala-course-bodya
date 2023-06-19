@@ -49,6 +49,7 @@ object Lesson3 extends App {
   val param2: Option[Int] = None
   val param3: Option[Int] = Some(3)
 
+  println("forOptionComprehensionResult - 1")
   val forOptionComprehensionResult = for {
     a <- param1
     b <- param2
@@ -58,6 +59,7 @@ object Lesson3 extends App {
   }
 
   forOptionComprehensionResult.foreach(println)
+  println("forOptionComprehensionResult - 1\n")
 
   //контейнери повинні бути одного типу
   //значення повинні існувати
