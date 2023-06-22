@@ -3,7 +3,7 @@ package dev.study.lessons
 import java.util.UUID
 import java.util.concurrent.{Executors, TimeUnit}
 
-object Lesson_1_2 {
+object Lesson1_2 {
   def main(args: Array[String]): Unit = {
    //statement - нічого не вертає
    //expression
