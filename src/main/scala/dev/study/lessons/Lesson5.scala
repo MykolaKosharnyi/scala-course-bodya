@@ -32,14 +32,14 @@ object Lesson5 extends App {
 
   case class NetworkException(x: String) extends Exception
 
-  // @throws[RuntimeException]
+  @throws(classOf[RuntimeException])
   def riskyGetMethod(isRisky: Boolean): String = {
     println("processing riskyGetMethod")
     if (isRisky) throw MyCustomException("MyCustomException")
     "Answer1"
   }
 
-  //  @throws[RuntimeException]
+  @throws[RuntimeException]
   def anotherRiskyGetMethod(isRisky: Boolean): String = {
     println("processing anotherRiskyGetMethod")
     if (isRisky) throw MyAnotherCustomException("MyAnotherCustomException")

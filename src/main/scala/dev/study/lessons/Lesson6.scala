@@ -114,7 +114,7 @@ object Lesson6 extends App {
     case _ =>
   }
 
-  val simpleTuplePerson: (String, Int) = ("Andriy", 22)
-  val toPerson = (Person.apply _) tupled
-    println(toPerson(simpleTuplePerson))
+//  val simpleTuplePerson: (String, Int) = ("Andriy", 22)
+//  val toPerson = (Person.apply _) tupled
+//    println(toPerson(simpleTuplePerson))
 }
