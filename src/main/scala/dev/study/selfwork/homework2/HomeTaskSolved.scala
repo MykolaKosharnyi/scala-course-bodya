@@ -1,6 +1,6 @@
 package dev.study.selfwork.homework2
 
-object HomeTaskSolved extends App {
+object HomeTaskSolved {
   // if sum not submitted, precise in payment service. In case not found remove from final report.
   // if tax sum is not assigned calculate it(20%) (minimal tax free sum for calculation = 100 or reversal payments are tax free)
   // if desc is empty default value will be "technical"
@@ -32,22 +32,23 @@ object HomeTaskSolved extends App {
   println("INCOME VALUES: ")
   payments.foreach(println)
 
-  println("\nRESULT:")
-  val result: Seq[PaymentInfo] = for {
-    p <- payments.distinct
-    sum <- p.sum orElse PaymentCenter.getPaymentSum(p.paymentId)
-    tax <- p.tax orElse calculateTax(sum)
-    desc <- p.desc orElse Some("technical")
-  } yield PaymentInfo(p.paymentId, sum, tax, desc)
-  result.foreach(println)
+  println("\nSOLVED:")
+  val ZERO_TAX: Long = 0
 
-  private def calculateTax(sum: Long): Option[Long] = {
-    val calculatedTax = sum * 0.2
-    if (calculatedTax >= 100) {
-      Some(calculatedTax.toLong)
-    } else {
-      Some(0)
-    }
-  }
+  def getPaymentSum(id:Int, sum: Option[Long]): Option[Long] = sum orElse PaymentCenter.getPaymentSum(id)
+  def taxCondition = (sum: Long) => sum > 100
+  //def calculateTax = (sum: Long) => sum * 20 / 100
+  def calculateAlternativeTax(sum: Long) = Some(sum) filter taxCondition map(_ * 20 / 100 ) orElse Some(ZERO_TAX)
+  def getTax(tax: Option[Long], sum: Long) = tax orElse calculateAlternativeTax(sum)
+  def getDesc(desc: Option[String]) = desc orElse Some("technical")
 
+  def getPaymentInfo(pi: PaymentInfoDto): Option[PaymentInfo] = for {
+    sum <- getPaymentSum(pi.paymentId, pi.sum)
+    tax <- getTax(pi.tax, sum)
+    desc <- getDesc(pi.desc)
+  } yield PaymentInfo(pi.paymentId, sum, tax, desc)
+
+  val result: Seq[PaymentInfo] = (payments distinct) flatMap (x => getPaymentInfo(x))
+
+  result foreach println
 }
