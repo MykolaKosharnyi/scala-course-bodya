@@ -39,6 +39,9 @@ object Lesson10 extends App {
 
   //partial applied function - частковий асайнинг параметрів
 
+  //TODO глянути відмінність partial applied і currying function
+  //викликається тільки один параметр фукції
+
     /////// currying
 
   /*
@@ -90,4 +93,5 @@ object Lesson10 extends App {
 
   //1 to 10 foreach println(s"${_} : ${factorial _}")
   println(factorial(6))
+
 }
